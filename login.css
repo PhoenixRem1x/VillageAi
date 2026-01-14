@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "AuBord";
+    src: url("./fonts/Au\ Bord\ de\ la\ Seine.ttf");
+}
+
 h2 {
     color:gray;
     font-family:monospace;
@@ -8,15 +13,41 @@ h2 {
     opacity:50%;
     
 }
-input,button {
-    display:block;
+input {
     padding: 10px;
-    border-radius: 2%;
+    
 }
 
+#user,
+#pass {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#user input,
+#pass input {
+    display: inline-block;
+    margin-left:3px;
+}
+
+img {
+    height:40px;
+    width:40px;
+}
+
+button {
+    display:block;
+    padding: 10px;
+    margin-top:13px;
+    border-radius: 15%;
+    background-color: tomato;
+    border-color:orangered;
+}
+
+
 form {
-    border:2px solid black;
-    border-radius:3%;
+    border:2px solid rgba(255, 255, 255);
     display:inline-block;
     padding-top:10px;
     padding-left:10px;
@@ -38,6 +69,16 @@ form {
     left:0%;
 }
 
+.qoute{
+    position:fixed;
+    width:50%;
+    top:10%;
+    left:45%;
+    font-family:'AuBord';
+    font-size:60pt;
+    color:white;
+}
+
 body {
-    background-image: url("shapelined-_JBKdviweXI-unsplash.jpg");
+    background-image: url("shapelined-_JBKdviweXI-unsplash.png");
 }
