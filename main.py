@@ -1,15 +1,40 @@
 from flask import Flask, render_template, request
+import pickle
 
 app = Flask(__name__)
+
+class User:
+    def __init__(self,username,password,email):
+        self.username = username
+        self.password = password
+        self.email = email
+
+Users = []
+with open('users.pkl','rb') as f:
+    Users = pickle.load(f)
+
+
+global addUser
+def addUser(username,password,email):
+    Users.append(User(username,password,email))
+    with open('users.pkl','wb') as f:
+        pickle.dump(Users, f)
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Code to handle POST request and retrieve form data
         name = request.form.get('username')
         password = request.form.get('password')
-        # Process data further (e.g., save to a database, display it)
+
+        for i in Users:
+            if i.username == name and i.password == password:
+                return "sucess"
         return f'Name: {name}, Password: {password}'
+    
+
     # Code to handle GET request and display the empty form
     return render_template('login.html')
 
@@ -20,8 +45,10 @@ def create():
         name = request.form.get('username')
         password = request.form.get('password')
         email = request.form.get('email')
-        # Process data further (e.g., save to a database, display it)
-        return f'Name: {name}, Password: {password}, Email: {email}'
+        
+        addUser(name,password,email)
+        #return f'Name: {name}, Password: {password}, Email: {email}'
+        
     # Code to handle GET request and display the empty form
     return render_template('create.html')
 
