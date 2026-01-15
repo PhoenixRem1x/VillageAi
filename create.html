@@ -2,17 +2,31 @@
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <h2>Create an Account</h2>
+    <h2>Login</h2>
+    <!--<div class="line"></div> -->
+
+
     <div class="login">
     <form method="POST" action="/login">
 
-        <input type="text" name="email" placeholder="example@gmail.com" required>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <div id="email">
+          
+        </div>
 
+
+        <div id="user">
+        <img src="./images/user.png" id="image">
+        <input type="text" name="username" placeholder="Username" required>
+        </div>
+
+        <div id="pass">
+        <img src="./images/password.png">
+        <input type="password" name="password" placeholder="Password" required>
+        </div>
         <button type="submit">Log In</button>
-        <p>Already have an account? <a href="./login.html">Sign-In</a></p>
+        <p><a href="./create.html">Create an account</a></p>
 
     </form>
+    <p class="qoute"1>"A jack of all trades is a master of none, but oftentimes better than a master of one."</p>
     </div>
 </body>
