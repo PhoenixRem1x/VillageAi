@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="../static/create.css">
+</head>
+<body>
+    <h2>Create an Account</h2>
+    <!--<div class="line"></div> -->
+
+
+    <div class="login">
+    <form method="POST" action="/login">
+
+        <div id="email">
+          <img src="../static/email.png" id="image">
+          <input type="text" name="email" placeholder="you@example.com" required>
+        </div>
+
+
+        <div id="user">
+          <img src="../static/user.png" id="image">
+          <input type="text" name="username" placeholder="Username" required>
+        </div>
+
+        <div id="pass">
+          <img src="../static/password.png">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit">Create Account</button>
+        <p>Already a User? <a href="./login">Sign-In</a></p>
+
+    </form>
+    <p class="qoute"1>"A jack of all trades is a master of none, but oftentimes better than a master of one."</p>
+    </div>
+</body>
