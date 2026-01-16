@@ -16,3 +16,18 @@ with open('mylist.pkl', 'wb') as f:
 with open('mylist.pkl','rb') as f:
     list2 = pickle.load(f)
 print("------"+list2[0].email)
+
+
+print("\n \n \n \n ")
+from ollama import ChatResponse,chat
+# smollm2:135m
+
+response: ChatResponse = chat(model='smollm2:135m', messages=[
+  {
+    'role': 'user',
+    'content': 'Hello',
+  },
+])
+print(response['message']['content'])
+# or access fields directly from the response object
+print(response.message.content)

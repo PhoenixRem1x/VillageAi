@@ -1,0 +1,51 @@
+html, body {
+    height:100%;
+    margin:0;
+}
+
+body {
+    background-image: url("./bg2.jpg");
+}
+
+#main {
+    width: 85%;
+    height: 90%;
+    margin:5%;
+    margin-top:2.5%;
+    margin-left:10%;
+    background-color: white;
+    border-radius:1%;
+    padding-top:1px;
+    padding-left:15px;
+}
+
+#text {
+    width:98.5%;
+    height:90%;
+    background-color: black;
+ 
+}
+
+#button {
+    width:36px;
+    height:36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+#arrow{
+    height:32px;
+    width:32px;
+    display:flex;
+}
+form {
+    display:flex;
+    align-items: center;
+    gap:6px;
+}
+#inp{
+    width:95%;
+    border-radius: 2%;
+    height:32px;
+}
