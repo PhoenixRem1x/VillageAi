@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import pickle, ollama
 
+text = "asdasdasdasdasdadadasd"
+
 app = Flask(__name__)
 
 class User:
@@ -41,16 +43,26 @@ def login():
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
-        # Code to handle POST request and retrieve form data
         name = request.form.get('username')
         password = request.form.get('password')
         email = request.form.get('email')
-        
         addUser(name,password,email)
-        #return f'Name: {name}, Password: {password}, Email: {email}'
-        
-    # Code to handle GET request and display the empty form
+
     return render_template('create.html')
+
+
+
+@app.route('/chat', methods=['GET', 'POST'])
+def chat():
+    inp=""
+    if request.method == 'POST':
+        inp = request.form.get('inp')
+        
+        
+
+    return render_template('chat.html',text=f"{text}{inp}")
+
+
 
 
 

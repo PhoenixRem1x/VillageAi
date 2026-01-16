@@ -22,8 +22,7 @@ body {
 #text {
     width:98.5%;
     height:90%;
-    background-color: black;
- 
+    overflow-wrap:break-word;
 }
 
 #button {
