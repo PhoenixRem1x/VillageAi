@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import pickle, ollama
 
 text = "asdasdasdasdasdadadasd"
@@ -52,16 +52,16 @@ def create():
 
 
 
-@app.route('/chat', methods=['GET', 'POST'])
+@app.route('/chat')
 def chat():
-    inp=""
-    if request.method == 'POST':
-        inp = request.form.get('inp')
-        
-        
+    return render_template('chat.html', text=text)
 
-    return render_template('chat.html',text=f"{text}{inp}")
 
+@app.route('/chat_update', methods=['POST'])
+def chat_update():
+    inp = request.json.get('inp', '')
+    # later you can call ollama here
+    return jsonify(text=f"{text}{inp}")
 
 
 

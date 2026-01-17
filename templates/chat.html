@@ -6,13 +6,30 @@
 <body>
     <div id="main">
         <p id ="text">{{text}}</p>
-        <form>
+        <form id="chat-form">
           <input type="text" name="message" placeholder="Asking Something" id="inp">
           <button type="submit" id="button"><img src="../static/arrow.png" id="arrow"></button>
-        </form>
+        </form >
+        <script>
+          const form = document.getElementById("chat-form");
+          const input = document.getElementById("inp");
+          const output = document.getElementById("text");
 
-
-
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();   // 🔴 THIS is the key line
+          
+            fetch("/chat_update", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ inp: input.value })
+            })
+            .then(res => res.json())
+            .then(data => {
+              output.innerText = data.text;
+              input.value = "";
+            });
+          });
+        </script>
     </div>
 
   
