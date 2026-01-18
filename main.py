@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response, redirect
 import pickle, ollama
 
 text = "asdasdasdasdasdadadasd"
@@ -10,6 +10,8 @@ class User:
         self.username = username
         self.password = password
         self.email = email
+        self.messages = ""
+        
 
 Users = []
 with open('users.pkl','rb') as f:
@@ -33,11 +35,12 @@ def login():
 
         for i in Users:
             if i.username == name and i.password == password:
-                return "sucess"
-        return f'Name: {name}, Password: {password}'
-    
+                resp = make_response(redirect('/chat'))
+                resp.set_cookie('username',i.username,max_age=720000)
+                return resp
+            
+        #return f'Name: {name}, Password: {password}'
 
-    # Code to handle GET request and display the empty form
     return render_template('login.html')
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -60,9 +63,14 @@ def chat():
 @app.route('/chat_update', methods=['POST'])
 def chat_update():
     inp = request.json.get('inp', '')
+    print(request.cookies.get('username'))
+    if request.cookies.get('username') == None:
+        print("ASDASDASD")
+        return jsonify(redirect=True), 401
+
+
     # later you can call ollama here
     return jsonify(text=f"{text}{inp}")
-
 
 
 
