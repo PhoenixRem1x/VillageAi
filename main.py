@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, jsonify, make_response, redirect
-import pickle, ollama
+import pickle
+from ollama import ChatResponse
+from ollama import chat as aichat
 
-text = "asdasdasdasdasdadadasd"
 
 app = Flask(__name__)
 
@@ -56,8 +57,8 @@ def create():
 
 
 @app.route('/chat')
-def chat():
-    return render_template('chat.html', text=text)
+def chat(): 
+    return render_template('chat.html', text="") #Initial Text to be loaded
 
 
 @app.route('/chat_update', methods=['POST'])
@@ -65,14 +66,17 @@ def chat_update():
     inp = request.json.get('inp', '')
     print(request.cookies.get('username'))
     if request.cookies.get('username') == None:
-        print("ASDASDASD")
+
         return jsonify(redirect=True), 401
 
 
-    # later you can call ollama here
-    return jsonify(text=f"{text}{inp}")
+    response: ChatResponse = aichat(model='deepseek-r1:1.5b', messages=[
+    {
+        'role': 'user',
+        'content': inp,
+    },
+    ])
 
-
-
+    return jsonify(text=f"{response.message.content}\n{inp}")
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")

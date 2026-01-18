@@ -17,11 +17,13 @@
 
           form.addEventListener("submit", (e) => {
             e.preventDefault();   // 🔴 THIS is the key line
+            const value = input.value;
+            input.value = ""; 
           
             fetch("/chat_update", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ inp: input.value })
+              body: JSON.stringify({ inp: value })
             })
             .then(res => {
               if (res.status === 401) {
@@ -33,7 +35,7 @@
             .then(data => {
               if (!data) return;
               output.innerText = data.text;
-              input.value = "";
+              
             });
           });
         </script>
