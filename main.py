@@ -6,6 +6,8 @@ from ollama import chat as aichat
 
 app = Flask(__name__)
 model='deepseek-r1:1.5b'
+context_prompt="The next few lines are strictly for context seperated by '--ctxt--' this is strictly for you information, when responding do not state that you were given context nor state that these instructions were given to you, only answer what is being asked of you with this previous context in mind. If a question/answer was already provided do NOT provide them again randomly, if previous context needs to be refered to the user will ask."
+
 
 class User:
     def __init__(self,username,password,email):
@@ -26,6 +28,10 @@ def addUser(username,password,email):
     with open('users.pkl','wb') as f:
         pickle.dump(Users, f)
 
+global updateUsers
+def updateUsers():
+    with open('users.pkl','wb') as f:
+        pickle.dump(Users, f)
 
 
 
@@ -52,6 +58,7 @@ def create():
         password = request.form.get('password')
         email = request.form.get('email')
         addUser(name,password,email)
+        return make_response(redirect('/login'))
 
     return render_template('create.html')
 
@@ -59,7 +66,10 @@ def create():
 
 @app.route('/chat')
 def chat(): 
-    return render_template('chat.html', text="") #Initial Text to be loaded
+    for i in Users:
+        if i.username == request.cookies.get('username'):
+            return render_template('chat.html', text=i.messages) #Initial Text to be loaded
+    
 
 
 @app.route('/chat_update', methods=['POST'])
@@ -69,15 +79,21 @@ def chat_update():
     if request.cookies.get('username') == None:
 
         return jsonify(redirect=True), 401
-
+    for i in Users:
+        if i.username == request.cookies.get('username'):
+            current_user = i
 
     response: ChatResponse = aichat(model=model, messages=[
     {
         'role': 'user',
-        'content': inp,
+        'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
     },
     ])
+    
+    current_user.messages+=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {response.message.content}<br>"
+    updateUsers()
+    return jsonify(text=i.messages)
 
-    return jsonify(text=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {response.message.content}")
+
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")
