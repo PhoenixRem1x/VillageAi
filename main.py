@@ -5,6 +5,7 @@ from ollama import chat as aichat
 
 
 app = Flask(__name__)
+model='deepseek-r1:1.5b'
 
 class User:
     def __init__(self,username,password,email):
@@ -70,13 +71,13 @@ def chat_update():
         return jsonify(redirect=True), 401
 
 
-    response: ChatResponse = aichat(model='deepseek-r1:1.5b', messages=[
+    response: ChatResponse = aichat(model=model, messages=[
     {
         'role': 'user',
         'content': inp,
     },
     ])
 
-    return jsonify(text=f"{response.message.content}\n{inp}")
+    return jsonify(text=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {response.message.content}")
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0")

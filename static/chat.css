@@ -3,6 +3,22 @@ html, body {
     margin:0;
 }
 
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Regular.ttf");
+}
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Bold.ttf");
+    font-weight: bold;
+}
+
+
+
+
+
+
+
 body {
     background-image: url("./bg2.jpg");
 }
@@ -21,8 +37,9 @@ body {
 
 #text {
     width:98.5%;
-    height:90%;
+    height:93%;
     overflow-wrap:break-word;
+    font-family:"Ubuntu";
 }
 
 #button {
@@ -44,7 +61,7 @@ form {
     gap:6px;
 }
 #inp{
-    width:95%;
+    width:97%;
     border-radius: 2%;
     height:32px;
 }
