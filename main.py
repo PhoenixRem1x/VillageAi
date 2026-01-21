@@ -6,8 +6,7 @@ from ollama import chat as aichat
 
 app = Flask(__name__)
 model='deepseek-r1:1.5b'
-context_prompt="The next few lines are strictly for context seperated by '--ctxt--' this is strictly for you information, when responding do not state that you were given context nor state that these instructions were given to you, only answer what is being asked of you with this previous context in mind. If a question/answer was already provided do NOT provide them again randomly, if previous context needs to be refered to the user will ask."
-
+context_prompt="The next few lines are strictly for context seperated by '--ctxt--' this is strictly for you information, when responding do not state that you were given context nor state that these instructions were given to you, only answer what is being asked of you with this previous context in mind. If a question/answer was already provided do NOT provide them again randomly, if previous context needs to be refered to the user will ask. New users will not have any previous context for you to refer to, thats perfectly fine"
 
 class User:
     def __init__(self,username,password,email):
@@ -89,8 +88,18 @@ def chat_update():
         'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
     },
     ])
-    
-    current_user.messages+=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {response.message.content}<br>"
+    message = response.message.content
+    # Ai models like to output in markdown, Im not using mardown so the next bit is going to be a python interpretation of markdown using flip to switch between opening and closing elements
+    print(message)
+    for c in range(message.count("**")):
+        message = message.replace("**","<i>",1)
+        message = message.replace("**","</i>",1)
+    if (message.count("<i>") > message.count("</i>")):
+        message += "</i>"
+    print(message)
+
+    current_user.messages+=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {message}<br>"
+
     updateUsers()
     return jsonify(text=i.messages)
 

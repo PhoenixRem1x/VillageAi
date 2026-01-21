@@ -11,7 +11,11 @@ with open("users.pkl","rb") as f:
   Users = pickle.load(f)
 
 for i in Users:
-   print(f"{i.username}\n{i.password}\n{i.email}\n{i.messages}-------------------------------\n")
+  print(f"{i.username}\n{i.password}\n{i.email}\n{i.messages}-------------------------------\n")
+  i.messages=""
+  with open('users.pkl','wb') as f:
+        pickle.dump(Users, f)
+  
 print("\n \n \n \n ")
 
 #from ollama import ChatResponse,chat

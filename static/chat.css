@@ -12,6 +12,13 @@ html, body {
     src: url("fonts/Ubuntu-Bold.ttf");
     font-weight: bold;
 }
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Italic.ttf");
+    font-style:italic;
+}
+
+
 
 
 
