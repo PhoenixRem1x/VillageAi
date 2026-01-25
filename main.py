@@ -53,13 +53,17 @@ def login():
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
+        
         name = request.form.get('username')
         password = request.form.get('password')
         email = request.form.get('email')
+        for i in Users:
+            if(i.username == name):
+                return render_template('create.html', text="Username in use!")
         addUser(name,password,email)
         return make_response(redirect('/login'))
 
-    return render_template('create.html')
+    return render_template('create.html', text="")
 
 
 
