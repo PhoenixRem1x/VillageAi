@@ -40,13 +40,15 @@ body {
     border-radius:1%;
     padding-top:1px;
     padding-left:15px;
+
+    display:flex;
+    flex-direction:column;
 }
 
 #text {
-    width:98.5%;
-    height:93%;
-    overflow-wrap:break-word;
-    font-family:"Ubuntu";
+    flex: 1;
+    overflow-y: auto;
+    font-family: "Ubuntu";
 }
 
 #button {
@@ -56,10 +58,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
+    margin-bottom:.445%;
 }
 #arrow{
-    height:32px;
-    width:32px;
+    height:36px;
+    width:36px;
     display:flex;
 }
 form {
@@ -70,5 +73,6 @@ form {
 #inp{
     width:97%;
     border-radius: 2%;
-    height:32px;
+    line-height:32px;
+    margin-bottom:.445%;
 }
