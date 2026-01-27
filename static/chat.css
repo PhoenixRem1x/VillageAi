@@ -43,6 +43,7 @@ body {
 }
 
 #sidebar {
+    padding-top:10px;
     top:0;
     left:0;
 
@@ -54,6 +55,28 @@ body {
     background-color:white;
     position:fixed;
     border-radius:10px;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+#img {
+    width:auto;
+    height:auto;
+    transform: scale(.9);
+    place-items:center;
+    max-width: 100%;
+    margin-bottom:5px;
+    border: 7px solid rgba(224, 224, 224, .8);
+    border-radius: 20%;
+    background-color:rgba(224, 224, 224, .8);
+    
+}
+#img:hover{
+    opacity:0.5;
 }
 
 #text {
