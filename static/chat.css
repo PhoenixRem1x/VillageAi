@@ -47,7 +47,7 @@ body {
     top:0;
     left:0;
 
-    width:6%;
+    width:5%;
     height:90%;
     margin-top:2.5%;
     margin-left:1.5%;
@@ -69,11 +69,13 @@ body {
     transform: scale(.9);
     place-items:center;
     max-width: 100%;
+    max-height:100%;
     margin-bottom:5px;
-    border: 7px solid rgba(224, 224, 224, .8);
+    border: .50em solid rgba(224, 224, 224, .8);
     border-radius: 20%;
-    background-color:rgba(224, 224, 224, .8);
     
+    background-color:rgba(224, 224, 224, .8);
+    box-sizing: border-box;
 }
 #img:hover{
     opacity:0.5;
