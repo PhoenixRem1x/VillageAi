@@ -41,12 +41,25 @@
         </script>
     </div>
     <div id="sidebar">
-      <button type="deepseek"id="img"><img src="../static/deepseek-color.png" ></button>
-      <button type="meta"id="img"><img src="../static/meta-color.png" id="img"></button>
-      <button type="gemma"id="img"><img src="../static/gemma-color.png" id="img"></button>
-      <button type="chatgpt"id="img"><img src="../static/chatgpt.png" id="img"></button>
-
+      
+      <button class="ai-btn" data-ai="deepseek" id="img"><img src="../static/deepseek-color.png" ></button>
+      <button class="ai-btn" data-ai="meta" id="img"><img src="../static/meta-color.png" ></button>
+      <button class="ai-btn" data-ai="gemma" id="img"><img src="../static/gemma-color.png"></button>
+      <button class="ai-btn" data-ai="chatgpt" id="img"><img src="../static/chatgpt.png"></button>
+      
     </div>
+    <script>
+      document.querySelectorAll(".ai-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          fetch("/select_ai", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ai: btn.dataset.ai })
+          });
+        });
+      });
+      </script>
+
   
 
 </body>
