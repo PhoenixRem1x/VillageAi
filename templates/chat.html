@@ -16,7 +16,7 @@
           const output = document.getElementById("text");
 
           form.addEventListener("submit", (e) => {
-            e.preventDefault();   // 🔴 THIS is the key line
+            e.preventDefault(); 
             const value = input.value;
             input.value = ""; 
           
@@ -41,10 +41,10 @@
         </script>
     </div>
     <div id="sidebar">
-      <img src="../static/deepseek-color.png" id="img">
-      <img src="../static/meta-color.png" id="img">
-      <img src="../static/gemma-color.png" id="img">
-      <img src="../static/chatgpt.png" id="img">
+      <button type="deepseek"id="img"><img src="../static/deepseek-color.png" ></button>
+      <button type="meta"id="img"><img src="../static/meta-color.png" id="img"></button>
+      <button type="gemma"id="img"><img src="../static/gemma-color.png" id="img"></button>
+      <button type="chatgpt"id="img"><img src="../static/chatgpt.png" id="img"></button>
 
     </div>
   
