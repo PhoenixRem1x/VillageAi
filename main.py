@@ -14,6 +14,7 @@ class User:
         self.password = password
         self.email = email
         self.messages = ""
+        self.model="deepseek-r1:1.5b"
         
 
 Users = []
@@ -83,13 +84,12 @@ def chat_update():
     inp = request.json.get('inp', '')
     print(request.cookies.get('username'))
     if request.cookies.get('username') == None:
-
         return jsonify(redirect=True), 401
     for i in Users:
         if i.username == request.cookies.get('username'):
             current_user = i
 
-    response: ChatResponse = aichat(model=model, messages=[
+    response: ChatResponse = aichat(model=current_user.model, messages=[
     {
         'role': 'user',
         'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
@@ -114,8 +114,21 @@ def chat_update():
 
 @app.route("/select_ai", methods=["POST"])
 def select_ai():
+    if request.cookies.get('username') == None:
+        return jsonify(redirect=True), 401
+    for i in Users:
+            if i.username == request.cookies.get('username'):
+                current_user = i
     data = request.get_json()
     print(data["ai"])
+    if data == "deepseek":
+        current_user.model="deepseek-r1:1.5b"
+    elif data == "meta":
+        current_user.model="llama3.2:1b"
+    elif data == "gemma":
+        current_user.model="gemma3:1b"
+    elif data == "lfm2":
+        current_user.model="lfm2.5-thinking:latest"
     return "", 204
 
 
