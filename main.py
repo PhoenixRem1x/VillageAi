@@ -105,7 +105,7 @@ def chat_update():
         message += "</i>"
     print(message)
 
-    current_user.messages+=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{model}:</b> {message}<br>"
+    current_user.messages+=f"<b>{request.cookies.get('username')}:</b> {inp}<br><b>{current_user.model}:</b> {message}<br>"
 
     updateUsers()
 
@@ -121,13 +121,13 @@ def select_ai():
                 current_user = i
     data = request.get_json()
     print(data["ai"])
-    if data == "deepseek":
+    if data["ai"] == "deepseek":
         current_user.model="deepseek-r1:1.5b"
-    elif data == "meta":
+    elif data["ai"] == "meta":
         current_user.model="llama3.2:1b"
-    elif data == "gemma":
+    elif data["ai"] == "gemma":
         current_user.model="gemma3:1b"
-    elif data == "lfm2":
+    elif data["ai"] == "lfm2":
         current_user.model="lfm2.5-thinking:latest"
     updateUsers()
     return "", 204
