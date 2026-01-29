@@ -129,8 +129,9 @@ def select_ai():
         current_user.model="gemma3:1b"
     elif data == "lfm2":
         current_user.model="lfm2.5-thinking:latest"
+    updateUsers()
     return "", 204
-
+    
 
 
 if __name__ == '__main__':
