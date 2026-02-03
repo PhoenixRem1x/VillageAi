@@ -87,7 +87,7 @@ body {
     font-family: "Ubuntu";
 }
 
-#button {
+#button, #clear-button {
     width:36px;
     height:36px;
     display: flex;
@@ -95,6 +95,11 @@ body {
     justify-content: center;
     padding: 0;
     margin-bottom:.445%;
+}
+#X {
+    height:32px;
+    width:36px;
+    display:flex;
 }
 #arrow{
     height:36px;
@@ -107,7 +112,7 @@ form {
     gap:6px;
 }
 #inp{
-    width:97%;
+    width:93.5%;
     border-radius: 2%;
     line-height:32px;
     margin-bottom:.445%;

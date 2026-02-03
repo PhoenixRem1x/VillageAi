@@ -112,6 +112,18 @@ def chat_update():
     
     return jsonify(text=current_user.messages)
 
+@app.route('/chat_clear', methods=['POST'])
+def chat_clear():
+    print(request.cookies.get('username'))
+    if request.cookies.get('username') == None:
+        return jsonify(redirect=True), 401
+    for i in Users:
+        if i.username == request.cookies.get('username'):
+            current_user = i
+    print("Clearing Messages")
+    current_user.messages = " "
+    updateUsers()
+
 @app.route("/select_ai", methods=["POST"])
 def select_ai():
     if request.cookies.get('username') == None:

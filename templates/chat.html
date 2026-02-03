@@ -9,12 +9,23 @@
         <form id="chat-form">
           <input type="text" name="message" placeholder="Asking Something" id="inp">
           <button type="submit" id="button"><img src="../static/arrow.png" id="arrow"></button>
+          <button type="button" id="clear-button"><img src="../static/XCross.png" id="X"></button>
         </form >
         <script>
           const form = document.getElementById("chat-form");
           const input = document.getElementById("inp");
           const output = document.getElementById("text");
+          const clearbutton = document.getElementById("clear-button");
 
+          clearbutton.addEventListener("click",  (e) => {
+            fetch("/chat_clear", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+            })
+            .then(() => {
+              location.reload();
+            });
+          });
           form.addEventListener("submit", (e) => {
             e.preventDefault(); 
             const value = input.value;
