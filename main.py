@@ -33,6 +33,42 @@ def updateUsers():
     with open('users.pkl','wb') as f:
         pickle.dump(Users, f)
 
+global villageAi
+def villageAi(inp, current_user):
+    delegate = ""
+
+    response: ChatResponse = aichat(model='qwen3:0.6b', messages=[
+    {
+        'role': 'user',
+        'content': f'In 1 word only I need you to classify a prompt as either Math, Science, History, Astronomy, Quantum, or Coding. Astronomy should be used for anythin relating to outer space, and Quantum used for anything with quantum physics. Classify the following prompt "{inp}"'
+    },
+    ])
+    sort = response.message.content
+    print(sort)
+    if sort.find("Math") != -1:
+        delegate="phi4-mini"
+    elif sort.find("Coding") != -1:
+        delegate="codegemma:2b"
+    elif sort.find("Astronomy") != -1:
+        delegate="Mm77shallm/meshal:latest"
+    elif sort.find("Science") != -1:
+        delegate="falcon3:1b"
+    elif sort.find("Quantum") != -1:
+        delegate="oroboroslabs/base-q-v1:latest"
+    elif sort.find("History") != -1:
+        delegate="JorgeAtLLama/herodotus:latest"
+    else:
+        delegate="qwen3:8b"
+
+
+    response: ChatResponse = aichat(model=delegate, messages=[
+    {
+        'role': 'user',
+        'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
+    },
+    ])
+    message = response.message.content
+    return message
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -88,14 +124,16 @@ def chat_update():
     for i in Users:
         if i.username == request.cookies.get('username'):
             current_user = i
-
-    response: ChatResponse = aichat(model=current_user.model, messages=[
-    {
-        'role': 'user',
-        'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
-    },
-    ])
-    message = response.message.content
+    if current_user.model != "village":
+        response: ChatResponse = aichat(model=current_user.model, messages=[
+        {
+            'role': 'user',
+            'content': f"{context_prompt}--ctxt--\n{current_user.messages}\n--ctxt--\n{inp}",
+        },
+        ])
+        message = response.message.content
+    else:
+        message = villageAi(inp,current_user)
     # Ai models like to output in markdown, Im not using mardown so the next bit is going to be a python interpretation of markdown using to switch between opening and closing elements
     print(message)
     for c in range(message.count("**")):
