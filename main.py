@@ -46,7 +46,7 @@ def villageAi(inp, current_user):
     sort = response.message.content
     print(sort)
     if sort.find("Math") != -1:
-        delegate="phi4-mini"
+        delegate="phi4-mini:3.8b"
     elif sort.find("Coding") != -1:
         delegate="codegemma:2b"
     elif sort.find("Astronomy") != -1:
