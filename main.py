@@ -141,6 +141,8 @@ def select_ai():
         current_user.model="gemma3:1b"
     elif data["ai"] == "lfm2":
         current_user.model="lfm2.5-thinking:latest"
+    elif data["ai"] == "village":
+        current_user.model="village"
     updateUsers()
     return "", 204
     
