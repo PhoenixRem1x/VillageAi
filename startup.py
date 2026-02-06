@@ -4,12 +4,13 @@ from ollama import ChatResponse,chat
 ## smollm2:135m
 #
 models = ["deepseek-r1:1.5b","llama3.2:1b","gemma3:1b","lfm2.5-thinking:latest"]
-#response: ChatResponse = chat(model='smollm2:135m', messages=[
-#  {
-#    'role': 'user',
-#    'content': 'Hello',
-#  },
-#])
+for i in models:
+    response: ChatResponse = chat(model=i, messages=[
+      {
+        'role': 'user',
+        'content': 'Hello',
+      },
+    ])
 #print(response['message']['content'])
 ## or access fields directly from the response object
 #print(response.message.content)
