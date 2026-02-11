@@ -1,0 +1,86 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Regular.ttf");
+}
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Bold.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Ubuntu";
+    src: url("fonts/Ubuntu-Italic.ttf");
+    font-style:italic;
+}
+
+
+
+#box {
+    top:0;
+    left:0;
+    width:30vw;
+    height:80vh;
+    background-color:white;
+    margin-top:10vh;
+    margin-left:5vw;
+
+    border: 2px solid black;
+    position:absolute;
+    filter: drop-shadow(0 0 0.75rem black);
+}
+
+h1 {
+    margin-left:45vw;
+    text-align:left;
+    font-family:Ubuntu;
+    font-weight:bold;
+    font-size:30vh;
+    color:white;
+    filter: drop-shadow(0 0 0.75rem rgb(255, 97, 129));
+    text-shadow: 2px 2px 4px #000000;
+}
+
+h2 {
+    margin-top:2%;
+    margin-left:1vw;
+    font-family:Ubuntu;
+    font-size:8vh;
+    color:gray;
+    text-shadow: 2px 2px 3px #000000;
+}
+
+
+button {
+    display:inline-block;
+    padding:.55vh;
+    margin-left:1vw;
+    font-family:Ubuntu;
+    font-size:3vh;
+    border-radius:5%;
+    border: 3px solid transparent;
+    padding:1vw;
+    background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(90deg,rgba(255, 230, 156, 1) 0%, rgba(255, 10, 10, 1) 100%) border-box;
+}
+
+button:hover{
+    opacity:0.7;
+}
+
+p {
+    margin-top:-3vh;
+    margin-left:1vw;
+    font-family:Ubuntu;
+    font-style:italic;
+    margin-right:.5vw;
+    font-size:3vh;
+    
+}
+
+
+body {
+    background-image: url("../static/village_background.jpg");
+    background-size: cover;
+    overflow:hidden;
+}

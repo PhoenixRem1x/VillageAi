@@ -70,7 +70,9 @@ def villageAi(inp, current_user):
     message = response.message.content
     return message
 
-
+@app.route('/')
+def home():
+    return render_template('home.html')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

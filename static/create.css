@@ -47,6 +47,9 @@ button {
     border-color:orangered;
 }
 
+button:hover{
+    opacity:0.7;
+}
 
 form {
     border:2px solid rgba(255, 255, 255);
