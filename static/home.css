@@ -34,10 +34,15 @@ h1 {
     text-align:left;
     font-family:Ubuntu;
     font-weight:bold;
-    font-size:30vh;
+    font-size:15rem;
     color:white;
     filter: drop-shadow(0 0 0.75rem rgb(255, 97, 129));
     text-shadow: 2px 2px 4px #000000;
+}
+
+#logo {
+    width:15rem;
+    height:15rem;
 }
 
 h2 {
@@ -83,4 +88,6 @@ body {
     background-image: url("../static/village_background.jpg");
     background-size: cover;
     overflow:hidden;
+    min-height:1080;
+    min-width:1920;
 }

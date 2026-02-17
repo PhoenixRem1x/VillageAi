@@ -84,5 +84,7 @@ form {
 
 body {
     background-image: url("../static/bg.png");
+    min-height:1080;
+    min-width:1920;
     
 }

@@ -25,6 +25,8 @@ html, body {
 body {
     background-image: url("./bg2.jpg");
     overflow:hidden;
+    min-height:1080;
+    min-width:1920;
 }
 
 #main {
@@ -41,6 +43,8 @@ body {
     display:flex;
     flex-direction:column;
 }
+
+
 
 #sidebar {
     padding-top:10px;
