@@ -108,6 +108,9 @@ def create():
 
 @app.route('/chat', methods=['GET','POST'])
 def chat(): 
+    if request.cookies.get('username') == None:
+        return make_response(redirect("/login"))
+    
     for i in Users:
         if i.username == request.cookies.get('username'):
             return render_template('chat.html', text=i.messages) #Initial Text to be loaded

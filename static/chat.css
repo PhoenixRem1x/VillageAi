@@ -76,6 +76,7 @@ body {
     
     background-color:rgba(224, 224, 224, .8);
     box-sizing: border-box;
+    filter: drop-shadow(.25vw .5vw 0.5rem black);
 }
 #img:hover{
     opacity:0.5;
