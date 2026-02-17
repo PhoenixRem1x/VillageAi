@@ -71,12 +71,12 @@ body {
     max-width: 100%;
     max-height:100%;
     margin-bottom:5px;
-    border: .50em solid rgba(224, 224, 224, .8);
+    border: .50em solid rgba(224, 224, 224, .85);
     border-radius: 20%;
     
-    background-color:rgba(224, 224, 224, .8);
+    background-color:rgba(224, 224, 224, .85);
     box-sizing: border-box;
-    filter: drop-shadow(.25vw .5vw 0.5rem black);
+
 }
 #img:hover{
     opacity:0.5;
